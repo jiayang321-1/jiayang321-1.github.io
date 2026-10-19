@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from './lib/OrbitControls.js';
 
 const COLORS = {
   B2: 0xb9a7e0, B1: 0x9ec3ff, F1: 0xf2b8b0, F2: 0xa8dcb9, F3: 0xf5d9a0,
@@ -73,7 +73,7 @@ function quadStrip(points, z0, z1, positions, thick = 0) {
       ax - ox, z0, az - oz, bx - ox, z0, bz - oz, ax - ox, z1, az - oz,
       bx - ox, z0, bz - oz, bx - ox, z1, bz - oz, ax - ox, z1, az - oz,
       ax + ox, z0, az + oz, ax + ox, z1, az + oz, bx + ox, z0, bz + oz,
-      bx + ox, z0, bz + oz, ax + ox, z1, az + oz, bx + ox, z1, az + oz,
+      bx + ox, z0, bz + oz, ax + ox, z1, az + oz, bx + ox, z1, bz + oz,
     );
   }
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>别墅 3D 模型 · 由 DWG 图纸自动生成</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #0e1116; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  #app { width: 100%; height: 100%; }
+  #panel {
+    position: fixed; top: 16px; left: 16px; z-index: 10;
+    background: rgba(16,20,28,.88); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
+    padding: 14px 16px; color: #d7dde6; width: 232px; user-select: none;
+  }
+  #panel h1 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+  #panel .sub { font-size: 11px; color: #8a93a3; margin-bottom: 10px; }
+  #panel .sect { font-size: 12px; font-weight: 600; color: #aab3c2; margin: 12px 0 4px; border-top: 1px solid rgba(255,255,255,.08); padding-top: 10px; }
+  .row { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 12.5px; }
+  .row label { flex: 1; cursor: pointer; }
+  .sw { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  input[type=checkbox] { accent-color: #4f8cff; }
+  input[type=range] { width: 100%; accent-color: #4f8cff; }
+  .btnrow { display: flex; gap: 8px; margin-top: 10px; }
+  button {
+    flex: 1; background: #1d2634; color: #d7dde6; border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px; padding: 6px 0; font-size: 12px; cursor: pointer;
+  }
+  button:hover { background: #273344; }
+  .tip { margin-top: 10px; font-size: 11px; color: #6b7484; line-height: 1.6; }
+  #legend { position: fixed; bottom: 14px; right: 16px; z-index: 10; color: #8a93a3; font-size: 11px;
+    background: rgba(16,20,28,.7); padding: 6px 10px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="panel">
+  <h1>别墅三维模型</h1>
+  <div class="sub">由 21 张 DWG 节点/平面图纸自动重建</div>
+  <div id="floors"></div>
+  <div class="sect">机电系统 <span style="color:#6b7484;font-size:11px">(可单独选取)</span></div>
+  <div id="mepbox"></div>
+  <div style="font-size:10.5px;color:#6b7484;line-height:1.5;margin:4px 2px">注：排水管路与推断回路为按点位自动推算；仅「点灯回路·原绘」来自图纸原绘线（F3）。</div>
+  <div class="row" style="margin-top:8px">
+    <label>楼板透明度</label>
+  </div>
+  <input type="range" id="slabOp" min="0" max="100" value="55">
+  <div class="row">
+    <label>剖切高度（ dollhouse ）</label>
+  </div>
+  <input type="range" id="clipH" min="0" max="1150" value="1150">
+  <div class="btnrow">
+    <button id="rotate">自动旋转</button>
+    <button id="topview">俯视</button>
+  </div>
+  <div class="tip">左键旋转 · 右键平移 · 滚轮缩放<br>层高：B2 −5.6m / B1 −2.8m / F1 ±0 / F2 +3.6m / F3 +6.8m / 屋面 +10.15m</div>
+</div>
+<div id="legend">墙 = 面线挤出 · 蓝 = 玻璃 · 灰板 = 楼板 · 机电系统见左侧面板</div>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js" } }
+</script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
